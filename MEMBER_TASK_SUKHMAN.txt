@@ -1,0 +1,19 @@
+SUKHMAN - FRONTEND + BACKEND CONTRIBUTION
+
+Frontend ownership:
+- account.html
+- cart.html
+- checkout.html
+- settings.html
+- support.html
+- related CSS and JavaScript
+
+Backend ownership:
+- shopping cart API
+- checkout/order API and stock update flow
+- customer/staff profile API
+- customer settings API
+- support-message API
+
+Integration note:
+This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
