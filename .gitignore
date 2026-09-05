@@ -1,0 +1,6 @@
+.DS_Store
+.pptx-extract/
+team-share/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json

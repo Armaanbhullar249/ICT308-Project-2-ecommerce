@@ -1,0 +1,19 @@
+ABIK - FRONTEND + BACKEND CONTRIBUTION
+
+Frontend ownership:
+- index.html
+- home.html
+- search.html
+- shared styles/theme and common application JavaScript
+- shared images/Figma assets
+
+Backend ownership:
+- MySQL/PDO connection configuration
+- common PHP bootstrap/helpers
+- backend health endpoint
+- application bootstrap data endpoint
+- frontend-to-PHP backend adapter/bootstrap integration
+- shared search/session data integration
+
+Integration note:
+This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- Owner: Abik — customer search -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search — Warner Electronics</title>
+    <link rel="icon" href="images/warner-logo.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/abik.css" />
+    <link rel="stylesheet" href="css/theme-dark.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="home.html">
+        <img class="brand-logo" src="images/warner-mark.png" alt="" />
+        <span class="brand-text">
+          <span class="brand-name">WARNER</span>
+          <span class="brand-sub">ELECTRONICS</span>
+        </span>
+      </a>
+    </header>
+    <main class="page">
+      <h2 class="section-title" id="search-heading">All products</h2>
+
+      <div class="search-layout">
+        <aside class="filters">
+          <h3>Filters</h3>
+          <div class="filter-group">
+            <h4>Category</h4>
+            <div id="cat-filters"></div>
+          </div>
+          <div class="filter-group">
+            <h4>Price range</h4>
+            <div class="price-range">
+              <label>
+                <span>Min ($)</span>
+                <input type="number" data-price-min min="0" step="1" placeholder="0" />
+              </label>
+              <label>
+                <span>Max ($)</span>
+                <input type="number" data-price-max min="0" step="1" placeholder="Any" />
+              </label>
+            </div>
+          </div>
+          <div class="filter-group">
+            <h4>Brand</h4>
+            <div id="brand-filters"></div>
+          </div>
+        </aside>
+        <section>
+          <p class="meta" id="count" style="margin:0 0 0.85rem"></p>
+          <div class="grid" id="results"></div>
+        </section>
+      </div>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/backend-bootstrap.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/backend-adapter.js"></script>
+    <script src="js/abik/search.js"></script>
+  </body>
+</html>

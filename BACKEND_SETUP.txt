@@ -1,0 +1,15 @@
+WARNER'S ELECTRONICS - PHP/MYSQL SETUP
+
+1. Copy this folder into XAMPP htdocs.
+2. Start Apache and MySQL.
+3. Use the warners_electronics database you already created.
+4. Edit api/config/database.php only if your MySQL credentials differ from root / blank password.
+5. Open the project through localhost, for example:
+   http://localhost/warners-electronics/home.html
+
+IMPORTANT:
+- Do not double-click home.html from Windows Explorer. PHP APIs do not work through file:// URLs.
+- The browser no longer contains hardcoded admin/owner passwords.
+- Normal users register themselves as customers.
+- Admin login comes from the seeded users table row.
+- An Admin can promote a registered customer to Owner from Admin > Settings.
