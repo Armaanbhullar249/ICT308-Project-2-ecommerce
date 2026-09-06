@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- Owner: Kushal — admin dashboard -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — Warner Electronics</title>
+    <link rel="icon" href="images/warner-logo.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/kushal.css" />
+    <link rel="stylesheet" href="css/theme-dark.css" />
+  </head>
+  <body class="admin-app">
+    <aside class="admin-rail">
+      <a class="admin-brand" href="home.html">
+        <img src="images/warner-mark.png" alt="" />
+        <span>
+          <strong>WARNER</strong>
+          <em>ELECTRONICS</em>
+        </span>
+      </a>
+      <div class="admin-team">Catalogue workspace</div>
+      <nav class="admin-nav" aria-label="Admin">
+        <button class="admin-nav-link active" type="button" data-tab="dashboard">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          Dashboard
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="products">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2"/></svg>
+          Products
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="categories">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          Categories
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="rules">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 12h10M5 18h7"/><circle cx="19" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></svg>
+          Recommendations
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="reports">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg>
+          Reports
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a7.7 7.7 0 0 0 .1-6l-2.1-.3-1-1.8 1.2-1.8-2.1-2.1-1.8 1.2-1.8-1-.3-2.1h-2.4l-.3 2.1-1.8 1-1.8-1.2-2.1 2.1 1.2 1.8-1 1.8-2.1.3a7.7 7.7 0 0 0 .1 6l2.1.3 1 1.8-1.2 1.8 2.1 2.1 1.8-1.2 1.8 1 .3 2.1h2.4l.3-2.1 1.8-1 1.8 1.2 2.1-2.1-1.2-1.8 1-1.8z"/></svg>
+          Settings
+        </button>
+      </nav>
+      <a class="admin-nav-link admin-nav-store" href="home.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16l-1 10H5L4 10z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        Storefront
+      </a>
+    </aside>
+
+    <div class="admin-workspace">
+      <header class="admin-topbar">
+        <label class="admin-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg>
+          <input id="admin-q" type="search" placeholder="Search products, brands, categories" autocomplete="off" />
+        </label>
+        <div class="admin-top-actions">
+          <div class="admin-user">
+            <span class="admin-avatar" id="admin-avatar">A</span>
+            <span>
+              <strong id="admin-user-name">Admin</strong>
+              <em>Catalogue manager</em>
+            </span>
+          </div>
+          <button class="admin-logout" type="button" data-logout>Log out</button>
+        </div>
+      </header>
+
+      <main class="admin-main-pane">
+        <section id="view-dashboard">
+          <div class="admin-page-head">
+            <div>
+              <h1>Dashboard</h1>
+              <p>Track catalogue health, stock, and live checkout totals.</p>
+            </div>
+          </div>
+          <div class="admin-kpi-row" id="dash-kpis"></div>
+          <div class="admin-split">
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h2>Needs attention</h2>
+              </div>
+              <div id="dash-alerts"></div>
+            </section>
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h2>Recent orders</h2>
+              </div>
+              <div id="dash-orders"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="view-products" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Products</h1>
+              <p>Edit the live catalogue. Changes show for customers immediately.</p>
+            </div>
+            <button class="btn" type="button" id="add-product">+ Product</button>
+          </div>
+          <div class="admin-tabs" id="product-tabs"></div>
+          <div class="admin-filters">
+            <select id="admin-cat"><option value="">Category: All</option></select>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-head">
+              <h2>Catalogue</h2>
+              <p class="meta" id="product-count"></p>
+            </div>
+            <div id="catalogue"></div>
+          </div>
+        </section>
+
+        <section id="view-categories" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Categories</h1>
+              <p>Add or remove store categories used across the catalogue.</p>
+            </div>
+            <button class="btn" type="button" id="add-cat">+ Category</button>
+          </div>
+          <section class="admin-card">
+            <div class="admin-card-head">
+              <h2>Active categories</h2>
+            </div>
+            <div class="admin-inline-add">
+              <input id="cat-input" placeholder="e.g. Gaming" />
+              <button class="btn" type="button" id="add-cat-inline">Add</button>
+            </div>
+            <div class="admin-cat-grid" id="cat-list"></div>
+          </section>
+        </section>
+
+        <section id="view-rules" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Recommendation rules</h1>
+              <p>When a customer views or buys a product, boost the item you pick here.</p>
+            </div>
+          </div>
+          <section class="admin-card">
+            <div class="admin-card-head">
+              <h2>Add a rule</h2>
+            </div>
+            <div class="admin-rule-form">
+              <div class="field">
+                <label for="rule-name">Rule name</label>
+                <input id="rule-name" placeholder="Laptop bag with UltraBook" />
+              </div>
+              <div class="field">
+                <label for="rule-when-id">When they view or buy</label>
+                <select id="rule-when-id"></select>
+              </div>
+              <div class="field">
+                <label for="rule-then-id">Then recommend</label>
+                <select id="rule-then-id"></select>
+              </div>
+              <button class="btn" type="button" id="save-rule">Save rule</button>
+            </div>
+          </section>
+          <section class="admin-card" style="margin-top:1rem">
+            <div class="admin-card-head">
+              <h2>Active rules</h2>
+              <p class="meta" id="rule-count"></p>
+            </div>
+            <div id="rules-list"></div>
+          </section>
+        </section>
+
+        <section id="view-reports" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Reports</h1>
+              <p>Live totals from completed checkouts.</p>
+            </div>
+          </div>
+          <div id="admin-reports"></div>
+        </section>
+
+        <section id="view-settings" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Settings</h1>
+              <p>Account preferences and database management tools.</p>
+            </div>
+          </div>
+          <section class="admin-card">
+            <div class="admin-setting-row admin-setting-row--stack">
+              <div>
+                <h2>Appearance</h2>
+                <p class="meta">Choose Light, Dark, or System. This controls the appearance of the Admin dashboard on this browser.</p>
+              </div>
+              <div class="appearance-picker" id="admin-appearance"></div>
+            </div>
+          </section>
+          <section class="admin-card" style="margin-top:1rem">
+            <div class="admin-setting-row">
+              <div>
+                <h2>Catalogue data</h2>
+                <p class="meta">Clear all products, categories and recommendation rules from the database.</p>
+              </div>
+              <button class="btn btn-outline" type="button" id="reset-data">Clear catalogue</button>
+            </div>
+            <div class="admin-setting-row admin-setting-row--stack">
+              <div>
+                <h2>Owner account</h2>
+                <p class="meta">A customer can sign up normally, then you can promote that username to the Owner role.</p>
+              </div>
+              <div class="admin-owner-promote" style="display:flex;gap:.6rem;flex-wrap:wrap;width:100%;max-width:520px">
+                <input id="owner-promote-username" type="text" placeholder="Customer username" style="flex:1;min-width:200px" />
+                <button class="btn btn-outline" type="button" id="promote-owner">Promote to Owner</button>
+              </div>
+            </div>
+            <div class="admin-setting-row">
+              <div>
+                <h2>Sales history</h2>
+                <p class="meta">Remove recorded orders and revenue charts.</p>
+              </div>
+              <button class="btn btn-danger" type="button" id="clear-orders">Clear sales history</button>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="product-modal" role="dialog" aria-modal="true">
+      <div class="modal modal-product">
+        <div class="modal-head">
+          <h3 id="modal-title">Edit product</h3>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit-id" />
+          <div class="field"><label>Name</label><input id="edit-name" /></div>
+          <div class="field"><label>Category</label><select id="edit-category"></select></div>
+          <div class="field"><label>Brand</label><input id="edit-brand" placeholder="e.g. Acer" /></div>
+          <div class="field">
+            <label>Cover photo</label>
+            <p class="field-hint">Shown on product cards in the store.</p>
+            <input id="edit-image-file" type="file" accept="image/*" />
+            <input type="hidden" id="edit-image" />
+            <div class="photo-preview" id="photo-preview">No cover photo</div>
+            <button class="btn btn-outline btn-sm photo-remove" type="button" id="remove-cover" hidden>
+              Remove cover photo
+            </button>
+          </div>
+          <div class="field">
+            <label>Detail gallery</label>
+            <p class="field-hint">Extra photos customers see on the product page (up to 12).</p>
+            <input id="edit-gallery-files" type="file" accept="image/*" multiple />
+            <div class="gallery-preview" id="gallery-preview">No gallery photos yet</div>
+          </div>
+          <div class="modal-row">
+            <div class="field"><label>Price</label><input id="edit-price" type="number" min="0" step="1" /></div>
+            <div class="field"><label>Stock</label><input id="edit-stock" type="number" min="0" step="1" /></div>
+          </div>
+          <div class="field"><label>Recommendation weight</label><input id="edit-weight" type="number" min="0" max="1" step="0.01" /></div>
+          <div class="field"><label>Subtitle</label><input id="edit-subtitle" /></div>
+          <div class="field"><label>Description</label><textarea id="edit-description" rows="2"></textarea></div>
+          <div class="field">
+            <label>Key specifications</label>
+            <p class="field-hint">Each bullet appears on the product detail page.</p>
+            <div id="specs-list" class="specs-editor"></div>
+            <button class="btn btn-outline btn-sm" type="button" id="add-spec">+ Add bullet</button>
+          </div>
+        </div>
+        <div class="modal-foot actions">
+          <button class="btn btn-ghost" type="button" id="modal-cancel">Cancel</button>
+          <button class="btn" type="button" id="modal-save">Save changes</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/backend-bootstrap.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/backend-adapter.js"></script>
+    <script src="js/kushal/reports.js"></script>
+    <script src="js/kushal/admin.js"></script>
+  </body>
+</html>
