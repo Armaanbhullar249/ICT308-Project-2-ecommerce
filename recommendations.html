@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Owner: Vedic — recommendations -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recommendations — Warner Electronics</title>
+    <link rel="icon" href="images/warner-logo.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/vedic.css" />
+    <link rel="stylesheet" href="css/theme-dark.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="home.html">
+        <img class="brand-logo" src="images/warner-mark.png" alt="" />
+        <span class="brand-text">
+          <span class="brand-name">WARNER</span>
+          <span class="brand-sub">ELECTRONICS</span>
+        </span>
+      </a>
+    </header>
+    <main class="page">
+      <section class="hero">
+        <h1>Recommended for you</h1>
+        <p>
+          Suggestions update from products you view, add to cart, and buy —
+          plus recommendation rules set by admin.
+        </p>
+      </section>
+
+      <h2 class="section-title">Based on your activity</h2>
+      <p class="meta" id="why" style="margin-top:-0.35rem;margin-bottom:1rem"></p>
+      <div class="grid" id="recs"></div>
+
+      <h2 class="section-title" style="margin-top:1.75rem">Popular right now</h2>
+      <div class="grid" id="popular"></div>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/backend-bootstrap.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/backend-adapter.js"></script>
+    <script src="js/vedic/recommendations.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+VEDIC - FRONTEND + BACKEND CONTRIBUTION
+
+Frontend ownership:
+- recommendations.html
+- recommendation styling and JavaScript
+
+Backend ownership:
+- product activity tracking API (views/searches/purchases)
+- recommendation-rule API
+- database-backed recommendation behaviour integration
+
+Integration note:
+This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
