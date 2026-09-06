@@ -1,0 +1,14 @@
+ARMAJIT - FRONTEND + BACKEND CONTRIBUTION
+
+Frontend ownership:
+- product.html
+- product-detail styling
+- product-detail JavaScript
+
+Backend ownership:
+- product/catalogue PHP API used to read, create, update, delete and clear products
+- product upload storage directory
+- product data bridge used by both customer product pages and Admin catalogue management
+
+Integration note:
+This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
