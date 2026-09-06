@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!-- Owner: Kushal — owner dashboard -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Owner — Warner Electronics</title>
+    <link rel="icon" href="images/warner-logo.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/kushal.css" />
+    <link rel="stylesheet" href="css/sukhman.css" />
+    <link rel="stylesheet" href="css/theme-dark.css" />
+  </head>
+  <body class="admin-app">
+    <aside class="admin-rail">
+      <a class="admin-brand" href="home.html">
+        <img src="images/warner-mark.png" alt="" />
+        <span>
+          <strong>WARNER</strong>
+          <em>ELECTRONICS</em>
+        </span>
+      </a>
+      <div class="admin-team">Owner workspace</div>
+      <nav class="admin-nav" aria-label="Owner">
+        <button class="admin-nav-link active" type="button" data-tab="overview">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          Overview
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="people">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M4 19c.8-3 2.8-5 5-5s4.2 2 5 5"/><circle cx="17" cy="9" r="2.2"/><path d="M20.5 19c-.5-2.2-1.8-3.6-3.5-3.6"/></svg>
+          People
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="reports">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg>
+          Analytics
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="performance">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9h4v10zM10 19V5h4v14zM15 19v-7h4v7z"/></svg>
+          Performance
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="store">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16l-1 10H5L4 10z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Store
+        </button>
+        <button class="admin-nav-link" type="button" data-tab="settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a7.7 7.7 0 0 0 .1-6l-2.1-.3-1-1.8 1.2-1.8-2.1-2.1-1.8 1.2-1.8-1-.3-2.1h-2.4l-.3 2.1-1.8 1-1.8-1.2-2.1 2.1 1.2 1.8-1 1.8-2.1.3a7.7 7.7 0 0 0 .1 6l2.1.3 1 1.8-1.2 1.8 2.1 2.1 1.8-1.2 1.8 1 .3 2.1h2.4l.3-2.1 1.8-1 1.8 1.2 2.1-2.1-1.2-1.8 1-1.8z"/></svg>
+          Settings
+        </button>
+      </nav>
+      <a class="admin-nav-link admin-nav-store" href="home.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16l-1 10H5L4 10z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        Storefront
+      </a>
+    </aside>
+
+    <div class="admin-workspace">
+      <header class="admin-topbar">
+        <label class="admin-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></svg>
+          <input id="owner-q" type="search" placeholder="Search customers or orders" autocomplete="off" />
+        </label>
+        <div class="admin-top-actions">
+          <div class="admin-user">
+            <span class="admin-avatar" id="owner-avatar">O</span>
+            <span>
+              <strong id="owner-user-name">Owner</strong>
+              <em>Store owner</em>
+            </span>
+          </div>
+          <button class="admin-logout" type="button" data-logout>Log out</button>
+        </div>
+      </header>
+
+      <main class="admin-main-pane">
+        <section id="view-overview">
+          <div class="admin-page-head">
+            <div>
+              <h1>Overview</h1>
+              <p>Revenue, orders, and customer activity from live checkouts.</p>
+            </div>
+          </div>
+          <div class="admin-kpi-row" id="owner-kpis"></div>
+          <div class="admin-split">
+            <section class="admin-card">
+              <div class="admin-card-head"><h2>Recent orders</h2></div>
+              <div id="owner-recent"></div>
+            </section>
+            <section class="admin-card">
+              <div class="admin-card-head"><h2>Stock watch</h2></div>
+              <div id="owner-stock"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="view-people" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>People</h1>
+              <p>Staff stay fixed. Customer accounts can be paused or restored.</p>
+            </div>
+          </div>
+          <section class="admin-card">
+            <div class="admin-card-head"><h2>Staff</h2></div>
+            <div id="owner-staff"></div>
+          </section>
+          <section class="admin-card" style="margin-top:1rem">
+            <div class="admin-card-head">
+              <h2>Customers</h2>
+              <p class="meta" id="owner-people-count"></p>
+            </div>
+            <div id="owner-people"></div>
+          </section>
+        </section>
+
+        <section id="view-reports" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Analytics</h1>
+              <p>Track orders, revenue, and checkout volume over time.</p>
+            </div>
+          </div>
+          <div id="owner-reports"></div>
+        </section>
+
+        <section id="view-performance" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Performance</h1>
+              <p>Where revenue is coming from across categories and products.</p>
+            </div>
+          </div>
+          <div id="owner-performance"></div>
+        </section>
+
+        <section id="view-store" hidden>
+          <div class="admin-page-head">
+            <div>
+              <h1>Store</h1>
+              <p>Organisation controls for the live shop. Catalogue edits stay with admin.</p>
+            </div>
+          </div>
+          <section class="admin-card">
+            <div class="admin-setting-row">
+              <div>
+                <h2>Storefront</h2>
+                <p class="meta">Open the public shop as customers see it.</p>
+              </div>
+              <a class="btn" href="home.html">View storefront</a>
+            </div>
+            <div class="admin-setting-row">
+              <div>
+                <h2>Catalogue team</h2>
+                <p class="meta">Product photos, stock, and categories are managed by admin.</p>
+              </div>
+              <a class="btn btn-outline" href="home.html">Browse as owner</a>
+            </div>
+            <div class="admin-setting-row">
+              <div>
+                <h2>Sales history</h2>
+                <p class="meta">Clear recorded orders and revenue charts for this browser.</p>
+              </div>
+              <button class="btn btn-danger" type="button" id="owner-clear-orders">Clear sales history</button>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-settings" hidden>
+          <div class="staff-settings">
+            <div id="owner-settings-hub">
+              <header class="settings-page-head">
+                <h1>Settings</h1>
+              </header>
+
+              <button type="button" class="settings-profile-card" data-screen="personal">
+                <span class="settings-avatar" id="owner-set-avatar">O</span>
+                <span class="settings-profile-copy">
+                  <strong id="owner-set-name">Owner</strong>
+                  <span id="owner-set-meta">Store owner</span>
+                </span>
+                <span class="settings-chevron" aria-hidden="true">›</span>
+              </button>
+
+              <section class="settings-group">
+                <h2 class="settings-group-title">Account</h2>
+                <div class="settings-list">
+                  <button type="button" class="settings-row" data-screen="personal">
+                    <span class="settings-row-label">Personal info</span>
+                    <span class="settings-row-value" id="owner-hub-personal">Update details</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </button>
+                  <button type="button" class="settings-row" data-screen="security">
+                    <span class="settings-row-label">Security</span>
+                    <span class="settings-row-value">Password</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </button>
+                </div>
+              </section>
+
+              <section class="settings-group">
+                <h2 class="settings-group-title">Workspace</h2>
+                <div class="settings-list">
+                  <button type="button" class="settings-row" data-jump="people">
+                    <span class="settings-row-label">People</span>
+                    <span class="settings-row-value">Staff and customers</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </button>
+                  <button type="button" class="settings-row" data-jump="reports">
+                    <span class="settings-row-label">Analytics</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </button>
+                  <button type="button" class="settings-row" data-jump="store">
+                    <span class="settings-row-label">Store</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </button>
+                  <a class="settings-row" href="home.html">
+                    <span class="settings-row-label">View storefront</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </a>
+                </div>
+              </section>
+
+              <section class="settings-group">
+                <h2 class="settings-group-title">Preferences</h2>
+                <div class="settings-list">
+                  <button type="button" class="settings-row" data-screen="notifications">
+                    <span class="settings-row-label">Notifications</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </button>
+                  <button type="button" class="settings-row" data-screen="appearance">
+                    <span class="settings-row-label">Appearance</span>
+                    <span class="settings-row-value" id="owner-hub-appearance">System</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </button>
+                </div>
+              </section>
+
+              <section class="settings-group">
+                <h2 class="settings-group-title">Support</h2>
+                <div class="settings-list">
+                  <a class="settings-row" href="support.html">
+                    <span class="settings-row-label">Help centre</span>
+                    <span class="settings-chevron" aria-hidden="true">›</span>
+                  </a>
+                </div>
+              </section>
+
+              <button type="button" class="settings-signout btn btn-outline" data-logout>Sign out</button>
+            </div>
+
+            <div id="owner-settings-detail" hidden>
+              <header class="settings-detail-head">
+                <button type="button" class="settings-back" id="owner-settings-back">← Settings</button>
+                <h1 id="owner-settings-title">Detail</h1>
+              </header>
+              <div class="settings-detail-body" id="owner-settings-body"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/backend-bootstrap.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/backend-adapter.js"></script>
+    <script src="js/kushal/reports.js"></script>
+    <script src="js/kushal/owner.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+KUSHAL - FRONTEND + BACKEND CONTRIBUTION
+
+Frontend ownership:
+- login.html
+- admin.html
+- owner.html
+- Admin/Owner/Login CSS and JavaScript
+
+Backend ownership:
+- customer/staff registration and login/logout
+- password update/authentication
+- Admin/Owner role access support
+- customer status and Owner promotion API
+- category management API
+- Admin/Owner frontend integration with shared product/order data
+
+Integration note:
+This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
