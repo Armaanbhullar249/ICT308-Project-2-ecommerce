@@ -15,5 +15,4 @@ Backend ownership:
 - customer settings API
 - support-message API
 
-Integration note:
-This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
+
