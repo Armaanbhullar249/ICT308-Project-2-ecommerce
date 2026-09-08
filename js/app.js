@@ -97,15 +97,33 @@
     return { ok: true };
   }
 
-  function ensureData() {
-    if (!localStorage.getItem(PRODUCTS_KEY)) {
-      localStorage.setItem(PRODUCTS_KEY, JSON.stringify(window.WARNERS_PRODUCTS));
+  function storedList(key) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch {
+      return [];
     }
-    if (!localStorage.getItem(CATEGORIES_KEY)) {
-      localStorage.setItem(CATEGORIES_KEY, JSON.stringify(window.WARNERS_CATEGORIES));
+  }
+
+  function ensureData() {
+    const bundledProducts = window.WARNERS_PRODUCTS || [];
+    const bundledCategories = window.WARNERS_CATEGORIES || [];
+    const bundledRules = window.WARNERS_RULES || [];
+    if (!window.WARNERS_BACKEND_READY) {
+      if (bundledProducts.length) localStorage.setItem(PRODUCTS_KEY, JSON.stringify(bundledProducts));
+      if (bundledCategories.length) localStorage.setItem(CATEGORIES_KEY, JSON.stringify(bundledCategories));
+      localStorage.setItem(RULES_KEY, JSON.stringify(bundledRules));
+      return;
+    }
+    if (!storedList(PRODUCTS_KEY).length && bundledProducts.length) {
+      localStorage.setItem(PRODUCTS_KEY, JSON.stringify(bundledProducts));
+    }
+    if (!storedList(CATEGORIES_KEY).length && bundledCategories.length) {
+      localStorage.setItem(CATEGORIES_KEY, JSON.stringify(bundledCategories));
     }
     if (!localStorage.getItem(RULES_KEY)) {
-      localStorage.setItem(RULES_KEY, JSON.stringify(window.WARNERS_RULES || []));
+      localStorage.setItem(RULES_KEY, JSON.stringify(bundledRules));
     }
   }
 
@@ -1207,8 +1225,10 @@
   }
 
   function productArt(p, extraClass = "") {
-    if (p.image) {
-      return `<div class="${extraClass}"><img src="${p.image}" alt="${p.name || "Product"}" /></div>`;
+    const src = String(p.image || "").trim();
+    if (src) {
+      const safe = src.replace(/"/g, "");
+      return `<div class="${extraClass}"><img src="${safe}" alt="${p.name || "Product"}" /></div>`;
     }
     return `<div class="${extraClass}">${p.emoji || "📦"}</div>`;
   }

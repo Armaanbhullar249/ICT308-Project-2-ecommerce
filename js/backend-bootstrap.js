@@ -41,8 +41,17 @@
     return true;
   }
 
+  function seedFromFiles() {
+    const products = window.WARNERS_PRODUCTS || [];
+    if (!products.length) return;
+    localStorage.setItem("warners_products", JSON.stringify(products));
+    localStorage.setItem("warners_categories", JSON.stringify(window.WARNERS_CATEGORIES || []));
+    localStorage.setItem("warners_rules", JSON.stringify(window.WARNERS_RULES || []));
+  }
+
   window.WarnersBackend = { request, apply, refresh: function () { const r = request("GET", "api/bootstrap.php"); if (r.ok) apply(r); return r; } };
   const result = window.WarnersBackend.refresh();
   window.WARNERS_BACKEND_READY = !!result.ok;
   window.WARNERS_BACKEND_ERROR = result.ok ? "" : (result.error || "Backend unavailable");
+  if (!result.ok) seedFromFiles();
 })();
