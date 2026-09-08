@@ -13,6 +13,6 @@ Backend ownership:
 - checkout/order API and stock update flow
 - customer/staff profile API
 - customer settings API
-- support-message API
+- support-messages API
 
 
