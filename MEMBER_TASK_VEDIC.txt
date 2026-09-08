@@ -1,6 +1,6 @@
 VEDIC - FRONTEND + BACKEND CONTRIBUTION
 
-Frontend ownership:-
+Frontend ownership:
 - recommendations.html
 - recommendation styling and JavaScript
 
