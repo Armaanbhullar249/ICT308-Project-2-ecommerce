@@ -15,5 +15,4 @@ Backend ownership:
 - frontend-to-PHP backend adapter/bootstrap integration
 - shared search/session data integration
 
-Integration note:
-This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
+
