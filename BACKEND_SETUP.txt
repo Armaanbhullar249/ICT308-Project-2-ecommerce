@@ -12,4 +12,4 @@ IMPORTANT:
 - The browser no longer contains hardcoded admin/owner passwords.
 - Normal users register themselves as customers.
 - Admin login comes from the seeded users table row.
-- An Admin can promote a registered customer to Owner from Admin > Settings.
+- An Admin can promote a registered customer to Owner from Admin > Settings
