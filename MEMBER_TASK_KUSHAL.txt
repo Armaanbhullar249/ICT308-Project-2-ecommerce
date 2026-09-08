@@ -14,5 +14,4 @@ Backend ownership:
 - category management API
 - Admin/Owner frontend integration with shared product/order data
 
-Integration note:
-This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
+
