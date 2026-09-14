@@ -1,10 +1,12 @@
-KUSHAL - FRONTEND + BACKEND CONTRIBUTION
+KUSHAL – FRONTEND + BACKEND CONTRIBUTION
 
-Frontend ownership:
-- login.html
-- admin.html
-- owner.html
-- Admin/Owner/Login CSS and JavaScript
+Frontend Contribution
+- Developed and updated login.html
+- Developed and updated admin.html
+- Developed and updated owner.html
+- Worked on CSS styling for Login, Admin and Owner pages
+- Implemented JavaScript functionality for Login, Admin and Owner pages
+- Improved form validation and frontend user interaction
 
 Backend ownership:
 - customer/staff registration and login/logout
