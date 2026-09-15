@@ -1360,7 +1360,7 @@
                 <path d="M16.2 16.2 21 21"></path>
               </svg>
             </span>
-            <input type="search" name="q" placeholder="Search" value="${escHtml(currentQ)}" autocomplete="off" />
+            <input type="search" name="q" placeholder="Search laptops, phones, audio…" value="${escHtml(currentQ)}" autocomplete="off" />
           </label>
           <div class="search-suggest" hidden role="listbox" aria-label="Recent searches"></div>
         </form>
@@ -1706,7 +1706,9 @@
         !query ||
         p.name.toLowerCase().includes(query) ||
         (p.subtitle || "").toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query);
+        p.category.toLowerCase().includes(query) ||
+        String(p.brand || "").toLowerCase().includes(query) ||
+        (p.tags || []).some((t) => String(t).toLowerCase().includes(query));
       const matchC = !cats.length || cats.includes(p.category);
       const matchB =
         !brands.length ||
