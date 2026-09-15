@@ -9,7 +9,7 @@ Full-stack version of the Warner's Electronics project.
 - Authentication: PHP sessions + password hashes stored in MySQL
 
 ## Run with XAMPP / PHP + MySQL
-1. Put this project folder inside your web server folder, for example `C:\xampp\htdocs\warners-electronics`.
+1. Put this project folder inside your web server folder, for example `/Applications/XAMPP/htdocs/ICT308-Project-2-ecommerce-dev` on a Mac or `C:\xampp\htdocs\` on Windows.
 2. Start Apache and MySQL.
 3. Make sure the MySQL database you already created is named `warners_electronics`.
 4. If your MySQL username/password are different, edit `api/config/database.php`.
