@@ -1228,7 +1228,7 @@
     const src = String(p.image || "").trim();
     if (src) {
       const safe = src.replace(/"/g, "");
-      return `<div class="${extraClass}"><img src="${safe}" alt="${p.name || "Product"}" /></div>`;
+      return `<div class="${extraClass}"><img src="${safe}" alt="${p.name || "Product"}" onerror="this.replaceWith(document.createTextNode('📦'))" /></div>`;
     }
     return `<div class="${extraClass}">${p.emoji || "📦"}</div>`;
   }
@@ -1711,6 +1711,34 @@
     });
   }
 
+  function searchRelevance(product, query) {
+    const q = String(query || "").trim().toLowerCase();
+    if (!q) return 0;
+    const name = String(product.name || "").toLowerCase();
+    const subtitle = String(product.subtitle || "").toLowerCase();
+    const category = String(product.category || "").toLowerCase();
+    const brand = String(product.brand || "").toLowerCase();
+    let score = 0;
+    if (name === q) score += 100;
+    if (name.startsWith(q)) score += 40;
+    if (name.includes(q)) score += 25;
+    if (brand.includes(q)) score += 15;
+    if (category.includes(q)) score += 10;
+    if (subtitle.includes(q)) score += 8;
+    q.split(/\s+/).filter((w) => w.length > 1).forEach((word) => {
+      if (name.includes(word)) score += 5;
+    });
+    return score;
+  }
+
+  function rankSearchResults(list, query) {
+    const q = String(query || "").trim();
+    if (!q) return list.slice();
+    return list
+      .slice()
+      .sort((a, b) => searchRelevance(b, q) - searchRelevance(a, q) || String(a.name).localeCompare(String(b.name)));
+  }
+
   function bindPageMotion() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -1850,6 +1878,7 @@
     getOrderTracking,
     getRecommendations,
     filterProducts,
+    rankSearchResults,
     animateView,
   };
 })();
