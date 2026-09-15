@@ -69,7 +69,8 @@ function render() {
     ? readPriceRange(filters)
     : { minPrice: null, maxPrice: null };
 
-  const list = Warners.filterProducts({ q, cats, brands, minPrice, maxPrice });
+  const matched = Warners.filterProducts({ q, cats, brands, minPrice, maxPrice });
+  const list = isSearchMode() ? Warners.rankSearchResults(matched, q) : matched;
 
   const heading = document.getElementById("search-heading");
   if (heading) {
