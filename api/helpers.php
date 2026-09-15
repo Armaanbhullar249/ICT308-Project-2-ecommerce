@@ -68,7 +68,7 @@ function product_rows(): array {
     return array_map(function($r)use($specs,$tagMap){
         $id=(string)$r['id']; $meta=product_meta((int)$r['id']);
         return ['id'=>$id,'name'=>$r['name'],'category'=>$r['category']??'Other','brand'=>$r['brand']??'',
-            'price'=>(float)$r['price'],'stock'=>(int)$r['stock'],'weight'=>(float)($meta['weight']??0.5),
+            'price'=>(float)$r['price'],'stock'=>(int)$r['stock'],'weight'=>round((float)($meta['weight']??0.5),2),
             'subtitle'=>$r['subtitle']?:($r['category']??''),'description'=>$r['description']??'',
             'image'=>$r['image']??'','gallery'=>$meta['gallery']??[],'tone'=>'blue','emoji'=>'📦',
             'tags'=>$tagMap[$r['id']]??[],'specs'=>$specs[$r['id']]??[]];
