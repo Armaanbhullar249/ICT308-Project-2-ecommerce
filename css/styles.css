@@ -34,6 +34,22 @@
   --motion-page: 0.65s;
 }
 
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 80;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
 html[data-theme="dark"] {
   color-scheme: dark;
   --ink: #f1f5f9;

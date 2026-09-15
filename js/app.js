@@ -1250,6 +1250,13 @@
     const session = getSessionUser();
     const host = document.querySelector("[data-header]");
     if (!host) return;
+    if (!document.querySelector(".skip-link")) {
+      const skip = document.createElement("a");
+      skip.className = "skip-link";
+      skip.href = "#main-content";
+      skip.textContent = "Skip to content";
+      document.body.insertBefore(skip, document.body.firstChild);
+    }
 
     const currentCat = new URLSearchParams(location.search).get("cat") || "";
     const currentQ = new URLSearchParams(location.search).get("q") || "";
