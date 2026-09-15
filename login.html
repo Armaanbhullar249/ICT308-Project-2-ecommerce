@@ -66,26 +66,46 @@
                   required
                 />
               </div>
-              <div class="field">
-                <label for="password">Password</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autocomplete="current-password"
-                  placeholder="Your password"
-                  required
-                />
-              </div>
-              <div class="login-row">
-                <span></span>
-                <a class="login-link" href="support.html">Need help?</a>
-              </div>
-              <button class="btn login-submit" type="submit">Sign in</button>
-              <p class="login-alert" id="error" hidden role="alert"></p>
-            </form>
-          </div>
+             <div class="field">
+  <label for="new-password">Password</label>
+  <input
+    id="new-password"
+    type="password"
+    required
+    minlength="4"
+    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{4,}"
+    title="Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 symbol."
+    autocomplete="new-password"
+    placeholder="Uppercase, lowercase & symbol"
+  />
+</div>
+<div class="field">
+  <label for="new-password">Password</label>
+  <input
+    id="new-password"
+    type="password"
+    required
+    minlength="4"
+    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{4,}"
+    title="Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 symbol."
+    autocomplete="new-password"
+    placeholder="Uppercase, lowercase & symbol"
+  />
+</div>
 
+<div class="field">
+  <label for="confirm-password">Confirm password</label>
+  <input
+    id="confirm-password"
+    type="password"
+    required
+    minlength="4"
+    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{4,}"
+    title="Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 symbol."
+    autocomplete="new-password"
+    placeholder="Repeat your password"
+  />
+</div>
           <div id="signup-view" hidden role="tabpanel">
             <h1>Create your account</h1>
             <p class="login-lead">Join Warner Electronics to checkout and manage your orders.</p>
