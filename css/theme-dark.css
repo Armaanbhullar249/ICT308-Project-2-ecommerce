@@ -487,3 +487,12 @@ html[data-theme="dark"] .admin-tab.active {
 html[data-theme="dark"] .admin-tabs {
   border-bottom-color: var(--line);
 }
+
+html[data-theme="dark"] .backend-banner {
+  background: #3f1d1d;
+  color: #fecaca;
+}
+html[data-theme="dark"] .backend-banner a {
+  color: #fda4af;
+}
+

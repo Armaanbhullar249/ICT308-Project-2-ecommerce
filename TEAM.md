@@ -43,6 +43,9 @@ Pages: `home.html`, `search.html`, `index.html`
 | `js/data.js` (product catalogue) |
 | `css/styles.css` (shared look) |
 | `css/theme-dark.css` (dark / system appearance) |
+| `schema.sql` |
+| `api/helpers.php`, `api/bootstrap.php`, `api/health.php`, `api/config/database.php` |
+| `js/backend-bootstrap.js`, `js/backend-adapter.js` |
 | `TEAM.md` |
 | `README.md` |
 

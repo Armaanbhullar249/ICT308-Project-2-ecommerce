@@ -97,15 +97,33 @@
     return { ok: true };
   }
 
-  function ensureData() {
-    if (!localStorage.getItem(PRODUCTS_KEY)) {
-      localStorage.setItem(PRODUCTS_KEY, JSON.stringify(window.WARNERS_PRODUCTS));
+  function storedList(key) {
+    try {
+      const value = JSON.parse(localStorage.getItem(key) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch {
+      return [];
     }
-    if (!localStorage.getItem(CATEGORIES_KEY)) {
-      localStorage.setItem(CATEGORIES_KEY, JSON.stringify(window.WARNERS_CATEGORIES));
+  }
+
+  function ensureData() {
+    const bundledProducts = window.WARNERS_PRODUCTS || [];
+    const bundledCategories = window.WARNERS_CATEGORIES || [];
+    const bundledRules = window.WARNERS_RULES || [];
+    if (!window.WARNERS_BACKEND_READY) {
+      if (bundledProducts.length) localStorage.setItem(PRODUCTS_KEY, JSON.stringify(bundledProducts));
+      if (bundledCategories.length) localStorage.setItem(CATEGORIES_KEY, JSON.stringify(bundledCategories));
+      localStorage.setItem(RULES_KEY, JSON.stringify(bundledRules));
+      return;
+    }
+    if (!storedList(PRODUCTS_KEY).length && bundledProducts.length) {
+      localStorage.setItem(PRODUCTS_KEY, JSON.stringify(bundledProducts));
+    }
+    if (!storedList(CATEGORIES_KEY).length && bundledCategories.length) {
+      localStorage.setItem(CATEGORIES_KEY, JSON.stringify(bundledCategories));
     }
     if (!localStorage.getItem(RULES_KEY)) {
-      localStorage.setItem(RULES_KEY, JSON.stringify(window.WARNERS_RULES || []));
+      localStorage.setItem(RULES_KEY, JSON.stringify(bundledRules));
     }
   }
 
@@ -1207,8 +1225,10 @@
   }
 
   function productArt(p, extraClass = "") {
-    if (p.image) {
-      return `<div class="${extraClass}"><img src="${p.image}" alt="${p.name || "Product"}" /></div>`;
+    const src = String(p.image || "").trim();
+    if (src) {
+      const safe = src.replace(/"/g, "");
+      return `<div class="${extraClass}"><img src="${safe}" alt="${p.name || "Product"}" onerror="this.replaceWith(document.createTextNode('📦'))" /></div>`;
     }
     return `<div class="${extraClass}">${p.emoji || "📦"}</div>`;
   }
@@ -1230,6 +1250,13 @@
     const session = getSessionUser();
     const host = document.querySelector("[data-header]");
     if (!host) return;
+    if (!document.querySelector(".skip-link")) {
+      const skip = document.createElement("a");
+      skip.className = "skip-link";
+      skip.href = "#main-content";
+      skip.textContent = "Skip to content";
+      document.body.insertBefore(skip, document.body.firstChild);
+    }
 
     const currentCat = new URLSearchParams(location.search).get("cat") || "";
     const currentQ = new URLSearchParams(location.search).get("q") || "";
@@ -1333,7 +1360,7 @@
                 <path d="M16.2 16.2 21 21"></path>
               </svg>
             </span>
-            <input type="search" name="q" placeholder="Search" value="${escHtml(currentQ)}" autocomplete="off" />
+            <input type="search" name="q" placeholder="Search laptops, phones, audio…" value="${escHtml(currentQ)}" autocomplete="off" />
           </label>
           <div class="search-suggest" hidden role="listbox" aria-label="Recent searches"></div>
         </form>
@@ -1366,6 +1393,22 @@
     bindHeaderScroll(host);
     renderFooter();
     renderStaffBanner();
+    renderBackendBanner();
+  }
+
+  function renderBackendBanner() {
+    document.querySelector(".backend-banner")?.remove();
+    if (window.WARNERS_BACKEND_READY) return;
+    const page = document.querySelector("main.page");
+    if (!page) return;
+    const bar = document.createElement("div");
+    bar.className = "backend-banner";
+    bar.setAttribute("role", "status");
+    bar.innerHTML =
+      "PHP is not running here, so Create Account and checkout will fail (HTTP 405). Open " +
+      '<a href="http://localhost/ICT308-Project-2-ecommerce-dev/login.html">http://localhost/ICT308-Project-2-ecommerce-dev/login.html</a> ' +
+      "with XAMPP Apache started. Do not use Go Live.";
+    page.prepend(bar);
   }
 
   function bindHeaderScroll(header) {
@@ -1663,7 +1706,9 @@
         !query ||
         p.name.toLowerCase().includes(query) ||
         (p.subtitle || "").toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query);
+        p.category.toLowerCase().includes(query) ||
+        String(p.brand || "").toLowerCase().includes(query) ||
+        (p.tags || []).some((t) => String(t).toLowerCase().includes(query));
       const matchC = !cats.length || cats.includes(p.category);
       const matchB =
         !brands.length ||
@@ -1673,6 +1718,34 @@
       if (max != null) matchP = matchP && Number(p.price) <= max;
       return matchQ && matchC && matchB && matchP;
     });
+  }
+
+  function searchRelevance(product, query) {
+    const q = String(query || "").trim().toLowerCase();
+    if (!q) return 0;
+    const name = String(product.name || "").toLowerCase();
+    const subtitle = String(product.subtitle || "").toLowerCase();
+    const category = String(product.category || "").toLowerCase();
+    const brand = String(product.brand || "").toLowerCase();
+    let score = 0;
+    if (name === q) score += 100;
+    if (name.startsWith(q)) score += 40;
+    if (name.includes(q)) score += 25;
+    if (brand.includes(q)) score += 15;
+    if (category.includes(q)) score += 10;
+    if (subtitle.includes(q)) score += 8;
+    q.split(/\s+/).filter((w) => w.length > 1).forEach((word) => {
+      if (name.includes(word)) score += 5;
+    });
+    return score;
+  }
+
+  function rankSearchResults(list, query) {
+    const q = String(query || "").trim();
+    if (!q) return list.slice();
+    return list
+      .slice()
+      .sort((a, b) => searchRelevance(b, q) - searchRelevance(a, q) || String(a.name).localeCompare(String(b.name)));
   }
 
   function bindPageMotion() {
@@ -1814,6 +1887,7 @@
     getOrderTracking,
     getRecommendations,
     filterProducts,
+    rankSearchResults,
     animateView,
   };
 })();

@@ -8,6 +8,12 @@
       xhr.send(data !== undefined ? JSON.stringify(data) : null);
       const body = JSON.parse(xhr.responseText || "{}");
       if (xhr.status >= 200 && xhr.status < 300 && body.ok !== false) return body;
+      if (xhr.status === 405) {
+        return {
+          ok: false,
+          error: "HTTP 405: open the site through XAMPP (http://localhost/...), not Go Live / Live Server.",
+        };
+      }
       return { ok: false, error: body.error || `HTTP ${xhr.status}` };
     } catch (e) {
       return { ok: false, error: e.message || "Backend unavailable" };
@@ -16,7 +22,7 @@
 
   function apply(data) {
     if (!data || !data.ok) return false;
-    localStorage.setItem("warners_products", JSON.stringify(data.products || []));
+    if (data.products) window.WARNERS_PRODUCT_COUNT = data.products.length;
     localStorage.setItem("warners_categories", JSON.stringify(data.categories || []));
     localStorage.setItem("warners_rules", JSON.stringify(data.rules || []));
     localStorage.setItem("warners_customers", JSON.stringify(data.customers || []));
@@ -41,8 +47,17 @@
     return true;
   }
 
+  function seedFromFiles() {
+    const products = window.WARNERS_PRODUCTS || [];
+    if (!products.length) return;
+    localStorage.setItem("warners_products", JSON.stringify(products));
+    localStorage.setItem("warners_categories", JSON.stringify(window.WARNERS_CATEGORIES || []));
+    localStorage.setItem("warners_rules", JSON.stringify(window.WARNERS_RULES || []));
+  }
+
   window.WarnersBackend = { request, apply, refresh: function () { const r = request("GET", "api/bootstrap.php"); if (r.ok) apply(r); return r; } };
   const result = window.WarnersBackend.refresh();
   window.WARNERS_BACKEND_READY = !!result.ok;
   window.WARNERS_BACKEND_ERROR = result.ok ? "" : (result.error || "Backend unavailable");
+  if (!result.ok) seedFromFiles();
 })();
