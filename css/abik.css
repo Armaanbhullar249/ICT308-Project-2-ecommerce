@@ -165,6 +165,15 @@
 #results {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+#home-all {
+  margin-bottom: 2rem;
+}
+#search-hint {
+  margin: -0.35rem 0 1rem;
+}
+.hero .meta a {
+  font-weight: 700;
+}
 
 .price-range {
   display: grid;

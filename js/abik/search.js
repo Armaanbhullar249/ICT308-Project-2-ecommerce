@@ -83,6 +83,13 @@ function render() {
     }
   }
 
+  const hint = document.getElementById("search-hint");
+  if (hint) {
+    if (isSearchMode()) hint.textContent = "Results are ranked by how closely the name, brand and category match your search.";
+    else if (preCat) hint.textContent = `Showing the ${preCat} category. Use search to narrow by name or brand.`;
+    else hint.textContent = "Use the header search to filter by name, or open a category from the menu.";
+  }
+
   const countEl = document.getElementById("count");
   if (countEl) {
     if (isSearchMode()) {
@@ -112,9 +119,11 @@ filters.addEventListener("input", (e) => {
   if (e.target.matches("[data-price-min], [data-price-max]")) render();
 });
 
+let searchTimer = 0;
 searchInput?.addEventListener("input", () => {
   syncQueryInUrl();
-  render();
+  window.clearTimeout(searchTimer);
+  searchTimer = window.setTimeout(render, 120);
 });
 
 if (searchInput?.value) {
