@@ -6,7 +6,7 @@ Frontend ownership:
 
 Backend ownership:
 - product activity tracking API (views/searches/purchases)
-- recommendation-rule AP
+- recommendation-rule API
 - database-backed recommendation behaviour integration
 
 
