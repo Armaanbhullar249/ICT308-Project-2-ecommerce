@@ -10,11 +10,17 @@
   function resultError(r, fallback) { return { ok: false, error: r?.error || fallback }; }
 
   W.registerCustomer = function (data) {
+    if (!window.WARNERS_BACKEND_READY) {
+      return { ok: false, error: "Open http://localhost/ICT308-Project-2-ecommerce-dev/login.html with XAMPP. Go Live cannot create accounts." };
+    }
     const r = req("POST", "api/auth.php", { action: "register", ...data });
     return r.ok ? { ok: true } : resultError(r, "Could not create account.");
   };
 
   W.login = function (username, password) {
+    if (!window.WARNERS_BACKEND_READY) {
+      return null;
+    }
     let guestCart = [];
     try { guestCart = JSON.parse(localStorage.getItem("warners_cart") || "[]"); } catch {}
     const r = req("POST", "api/auth.php", { action: "login", username, password, guestCart });
