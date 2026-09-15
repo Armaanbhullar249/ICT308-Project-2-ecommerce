@@ -40,44 +40,71 @@
     e.preventDefault();
     const err = document.getElementById("error");
     err.hidden = true;
+
     const user = Warners.login(
       document.getElementById("username").value,
       document.getElementById("password").value
     );
+
     if (!user) {
       err.hidden = false;
       err.textContent =
         "We couldn't sign you in. Check your details or create an account first.";
       return;
     }
+
     location.href = Warners.afterLoginPath(user.role);
   });
 
   document.getElementById("signup-form").addEventListener("submit", (e) => {
     e.preventDefault();
+
     const err = document.getElementById("signup-error");
     err.hidden = true;
+
     const password = document.getElementById("new-password").value;
     const confirm = document.getElementById("confirm-password").value;
+
+    // Password must contain at least:
+    // 1 uppercase letter
+    // 1 lowercase letter
+    // 1 symbol
+    // Minimum 4 characters
+    const passwordPattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{4,}$/;
+
+    // Check password strength
+    if (!passwordPattern.test(password)) {
+      err.hidden = false;
+      err.textContent =
+        "Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 symbol.";
+      return;
+    }
+
+    // Check if both passwords match
     if (password !== confirm) {
       err.hidden = false;
       err.textContent = "Passwords do not match. Please try again.";
       return;
     }
+
     const result = Warners.registerCustomer({
       name: document.getElementById("full-name").value,
       username: document.getElementById("new-username").value,
       password,
     });
+
     if (!result.ok) {
       err.hidden = false;
       err.textContent = result.error;
       return;
     }
+
     const user = Warners.login(
       document.getElementById("new-username").value,
       password
     );
+
     location.href = Warners.afterLoginPath(user.role);
   });
 })();
