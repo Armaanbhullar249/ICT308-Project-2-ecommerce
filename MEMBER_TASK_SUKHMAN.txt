@@ -1,6 +1,6 @@
 SUKHMAN - FRONTEND + BACKEND CONTRIBUTION
 
-Frontend ownership:
+Frontend ownership
 - account.html
 - cart.html
 - checkout.html
