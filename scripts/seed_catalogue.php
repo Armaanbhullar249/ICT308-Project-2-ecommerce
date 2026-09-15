@@ -1,4 +1,8 @@
 <?php
+/**
+ * Seed 100+ catalogue rows with local photos in uploads/products.
+ * Run from Terminal: /Applications/XAMPP/xamppfiles/bin/php scripts/seed_catalogue.php
+ */
 require_once dirname(__DIR__).'/api/config/database.php';
 
 $root = dirname(__DIR__);
