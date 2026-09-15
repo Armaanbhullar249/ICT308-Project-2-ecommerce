@@ -22,7 +22,7 @@
 
   function apply(data) {
     if (!data || !data.ok) return false;
-    localStorage.setItem("warners_products", JSON.stringify(data.products || []));
+    if (data.products) window.WARNERS_PRODUCT_COUNT = data.products.length;
     localStorage.setItem("warners_categories", JSON.stringify(data.categories || []));
     localStorage.setItem("warners_rules", JSON.stringify(data.rules || []));
     localStorage.setItem("warners_customers", JSON.stringify(data.customers || []));
