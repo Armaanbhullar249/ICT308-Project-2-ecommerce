@@ -1,5 +1,7 @@
 -- Warner's Electronics — schema inferred from api/*.php
 -- Import into database warners_electronics (phpMyAdmin Import, or mysql < schema.sql)
+-- After import, open: http://localhost/ICT308-Project-2-ecommerce-dev/api/health.php
+-- Default admin login: admin / admin123 (change this after first login)
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
