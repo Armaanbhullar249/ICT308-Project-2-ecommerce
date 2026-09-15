@@ -4,11 +4,16 @@ WARNER'S ELECTRONICS - PHP/MYSQL SETUP
 2. Start Apache and MySQL.
 3. Use the warners_electronics database you already created.
 4. Edit api/config/database.php only if your MySQL credentials differ from root / blank password.
-5. Open the project through localhost, for example:
-   http://localhost/warners-electronics/home.html
+5. Open the project in Chrome or Safari through localhost (not Go Live):
+   http://localhost/ICT308-Project-2-ecommerce-dev/home.html
+   Create Account:
+   http://localhost/ICT308-Project-2-ecommerce-dev/login.html
+6. Optional check: http://localhost/ICT308-Project-2-ecommerce-dev/api/health.php
+   Import schema.sql into the warners_electronics database if tables are missing.
 
 IMPORTANT:
-- Do not double-click home.html from Windows Explorer. PHP APIs do not work through file:// URLs.
+- Do not use Cursor/VS Code Go Live or Live Server. Those return HTTP 405 on signup because they cannot run PHP.
+- Do not double-click home.html. PHP APIs do not work through file:// URLs.
 - The browser no longer contains hardcoded admin/owner passwords.
 - Normal users register themselves as customers.
 - Admin login comes from the seeded users table row.

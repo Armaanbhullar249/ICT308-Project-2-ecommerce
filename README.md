@@ -13,7 +13,10 @@ Full-stack version of the Warner's Electronics project.
 2. Start Apache and MySQL.
 3. Make sure the MySQL database you already created is named `warners_electronics`.
 4. If your MySQL username/password are different, edit `api/config/database.php`.
-5. Open `http://localhost/warners-electronics/home.html` in the browser. Do not open the HTML files directly with `file://` because PHP APIs need a web server.
+5. Open `http://localhost/ICT308-Project-2-ecommerce-dev/home.html` in the browser. Import `schema.sql` if the database has no tables.
+6. Create an account at `http://localhost/ICT308-Project-2-ecommerce-dev/login.html`.
+
+Do not use Go Live / Live Server for signup or checkout. Those static servers cannot POST to PHP and return **HTTP 405**. Do not open HTML files with `file://`.
 
 ## Accounts
 - Customers create their own accounts from `login.html` using **Create Account**.
