@@ -10,9 +10,14 @@ Frontend ownership:
 Backend ownership:
 - MySQL/PDO connection configuration
 - common PHP bootstrap/helpers
-- backend health endpoint
+- backend health endpoint (includes store URL)
 - application bootstrap data endpoint
 - frontend-to-PHP backend adapter/bootstrap integration
 - shared search/session data integration
+- localhost vs Go Live warning when PHP is unavailable
+- schema.sql hand-off for teammates
+- search relevance ranking used on search.html
 
 
+Integration note:
+This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
