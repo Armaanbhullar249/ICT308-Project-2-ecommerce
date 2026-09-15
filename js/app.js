@@ -1386,6 +1386,22 @@
     bindHeaderScroll(host);
     renderFooter();
     renderStaffBanner();
+    renderBackendBanner();
+  }
+
+  function renderBackendBanner() {
+    document.querySelector(".backend-banner")?.remove();
+    if (window.WARNERS_BACKEND_READY) return;
+    const page = document.querySelector("main.page");
+    if (!page) return;
+    const bar = document.createElement("div");
+    bar.className = "backend-banner";
+    bar.setAttribute("role", "status");
+    bar.innerHTML =
+      "PHP is not running here, so Create Account and checkout will fail (HTTP 405). Open " +
+      '<a href="http://localhost/ICT308-Project-2-ecommerce-dev/login.html">http://localhost/ICT308-Project-2-ecommerce-dev/login.html</a> ' +
+      "with XAMPP Apache started. Do not use Go Live.";
+    page.prepend(bar);
   }
 
   function bindHeaderScroll(header) {

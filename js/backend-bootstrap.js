@@ -8,6 +8,12 @@
       xhr.send(data !== undefined ? JSON.stringify(data) : null);
       const body = JSON.parse(xhr.responseText || "{}");
       if (xhr.status >= 200 && xhr.status < 300 && body.ok !== false) return body;
+      if (xhr.status === 405) {
+        return {
+          ok: false,
+          error: "HTTP 405: open the site through XAMPP (http://localhost/...), not Go Live / Live Server.",
+        };
+      }
       return { ok: false, error: body.error || `HTTP ${xhr.status}` };
     } catch (e) {
       return { ok: false, error: e.message || "Backend unavailable" };
