@@ -947,11 +947,16 @@
 
   const RELATED_CATEGORIES = {
     Laptops: ["Accessories", "Audio", "Tablets"],
-    Smartphones: ["Audio", "Accessories"],
-    Audio: ["Accessories", "Smartphones"],
-    Accessories: ["Laptops", "Smartphones", "Tablets", "Audio"],
+    Phones: ["Audio", "Accessories", "Wearables"],
+    Smartphones: ["Audio", "Accessories", "Wearables"],
+    Audio: ["Accessories", "Phones"],
+    Accessories: ["Laptops", "Phones", "Tablets", "Audio", "Gaming"],
     "Smart Home": ["Accessories"],
     Tablets: ["Accessories", "Laptops"],
+    Gaming: ["Accessories", "Audio", "TVs"],
+    Cameras: ["Accessories"],
+    Wearables: ["Phones", "Accessories"],
+    TVs: ["Audio", "Accessories", "Gaming"],
   };
 
   /** Automatic recommendations from views, cart, purchases, and admin rules */
@@ -1734,6 +1739,9 @@
     if (brand.includes(q)) score += 15;
     if (category.includes(q)) score += 10;
     if (subtitle.includes(q)) score += 8;
+    (product.tags || []).forEach((tag) => {
+      if (String(tag).toLowerCase().includes(q)) score += 12;
+    });
     q.split(/\s+/).filter((w) => w.length > 1).forEach((word) => {
       if (name.includes(word)) score += 5;
     });
