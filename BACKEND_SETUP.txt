@@ -1,6 +1,7 @@
 WARNER'S ELECTRONICS - PHP/MYSQL SETUP
 
-1. Copy this folder into XAMPP htdocs.
+1. Copy this folder into XAMPP htdocs, for example:
+   /Applications/XAMPP/htdocs/ICT308-Project-2-ecommerce-dev
 2. Start Apache and MySQL.
 3. Use the warners_electronics database you already created.
 4. Edit api/config/database.php only if your MySQL credentials differ from root / blank password.
