@@ -17,5 +17,6 @@ try {
         $st=db()->prepare("SELECT product_id FROM product_activity WHERE user_id=? AND activity_type='purchase' GROUP BY product_id ORDER BY MAX(id) DESC LIMIT 24");$st->execute([$u['id']]);$purchased=array_map('strval',array_column($st->fetchAll(),'product_id'));
         $st=db()->prepare('SELECT search_term FROM search_history WHERE user_id=? ORDER BY id DESC LIMIT 12');$st->execute([$u['id']]);$search=array_column($st->fetchAll(),'search_term');
     }
-    respond(['ok'=>true,'user'=>session_shape($u),'currentProfile'=>$u?profile_shape($u):null,'products'=>product_rows(),'categories'=>category_names(),'rules'=>rule_rows(),'customers'=>$customers,'orders'=>$orders,'cart'=>$cart,'viewed'=>$viewed,'purchased'=>$purchased,'searchHistory'=>$search]);
+    $products=product_rows();
+    respond(['ok'=>true,'user'=>session_shape($u),'currentProfile'=>$u?profile_shape($u):null,'products'=>$products,'productCount'=>count($products),'generatedAt'=>gmdate('c'),'categories'=>category_names(),'rules'=>rule_rows(),'customers'=>$customers,'orders'=>$orders,'cart'=>$cart,'viewed'=>$viewed,'purchased'=>$purchased,'searchHistory'=>$search]);
 } catch(Throwable $e){ fail('Database connection or schema error: '.$e->getMessage(),500); }
