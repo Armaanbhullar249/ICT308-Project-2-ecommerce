@@ -4,70 +4,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Sign in — Warner Electronics</title>
+
     <link rel="icon" href="images/warner-logo.png" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/kushal.css" />
     <link rel="stylesheet" href="css/theme-dark.css" />
   </head>
+
   <body class="login-body">
     <header class="site-header" data-header></header>
 
     <main class="login-page">
       <div class="login-card">
+
+        <!-- LEFT SIDE -->
         <aside class="login-hero">
           <a class="login-hero-brand" href="home.html">
             <img src="images/warner-mark.png" alt="" />
             <span>WARNER ELECTRONICS</span>
           </a>
+
           <h2>Shop smarter with a Warner account.</h2>
-          <p>Create a free account in under a minute and unlock a better way to buy electronics online.</p>
+
+          <p>
+            Create a free account in under a minute and unlock a better
+            way to buy electronics online.
+          </p>
+
           <div class="login-highlights">
+
             <article class="login-highlight">
               <span class="login-highlight-tag">Member perk</span>
               <h3>Checkout in seconds</h3>
-              <p>Save your billing details once and fly through checkout every time you buy.</p>
+              <p>
+                Save your billing details once and fly through checkout
+                every time you buy.
+              </p>
             </article>
+
             <article class="login-highlight">
               <span class="login-highlight-tag">Stay in control</span>
               <h3>Track every order</h3>
-              <p>See order status, delivery updates, and past purchases from one place.</p>
+              <p>
+                See order status, delivery updates, and past purchases
+                from one place.
+              </p>
             </article>
+
             <article class="login-highlight">
               <span class="login-highlight-tag">Built for you</span>
               <h3>Smarter recommendations</h3>
-              <p>Get product picks based on what you browse, buy, and save in your cart.</p>
+              <p>
+                Get product picks based on what you browse, buy,
+                and save in your cart.
+              </p>
             </article>
+
           </div>
-          <p class="login-trust">Trusted by thousands of customers across Australia for any electronic products.</p>
+
+          <p class="login-trust">
+            Trusted by thousands of customers across Australia for
+            electronic products.
+          </p>
         </aside>
 
+        <!-- RIGHT SIDE -->
         <div class="login-panel">
-          <div class="login-tabs" role="tablist" aria-label="Account">
-            <button class="login-tab active" type="button" id="show-login" role="tab" aria-selected="true">
+
+          <div
+            class="login-tabs"
+            role="tablist"
+            aria-label="Account"
+          >
+            <button
+              class="login-tab active"
+              type="button"
+              id="show-login"
+              role="tab"
+              aria-selected="true"
+            >
               Sign in
             </button>
-            <button class="login-tab" type="button" id="show-signup" role="tab" aria-selected="false">
+
+            <button
+              class="login-tab"
+              type="button"
+              id="show-signup"
+              role="tab"
+              aria-selected="false"
+            >
               Create account
             </button>
           </div>
 
+          <!-- LOGIN -->
           <div id="login-view" role="tabpanel">
+
             <h1>Welcome back</h1>
-            <p class="login-lead">Enter your details to access your Warner account.</p>
+
+            <p class="login-lead">
+              Enter your details to access your Warner account.
+            </p>
+
             <form id="login-form">
+
               <div class="field">
                 <label for="username">Username</label>
+
                 <input
                   id="username"
                   name="username"
+                  type="text"
                   autocomplete="username"
                   placeholder="Your username"
                   required
                 />
               </div>
+
               <div class="field">
                 <label for="password">Password</label>
+
                 <input
                   id="password"
                   name="password"
@@ -77,36 +135,109 @@
                   required
                 />
               </div>
+
               <div class="login-row">
                 <span></span>
-                <a class="login-link" href="support.html">Need help?</a>
+
+                <a
+                  class="login-link"
+                  href="support.html"
+                >
+                  Need help?
+                </a>
               </div>
-              <button class="btn login-submit" type="submit">Sign in</button>
-              <p class="login-alert" id="error" hidden role="alert"></p>
+
+              <button
+                class="btn login-submit"
+                type="submit"
+              >
+                Sign in
+              </button>
+
+              <p
+                class="login-alert"
+                id="error"
+                hidden
+                role="alert"
+              ></p>
+
             </form>
           </div>
 
-          <div id="signup-view" hidden role="tabpanel">
+          <!-- SIGNUP -->
+          <div
+            id="signup-view"
+            hidden
+            role="tabpanel"
+          >
+
             <h1>Create your account</h1>
-            <p class="login-lead">Join Warner Electronics to checkout and manage your orders.</p>
+
+            <p class="login-lead">
+              Join Warner Electronics to checkout and manage your orders.
+            </p>
+
             <form id="signup-form">
+
               <div class="field">
-                <label for="full-name">Full name</label>
-                <input id="full-name" required placeholder="Alex Morgan" autocomplete="name" />
+                <label for="full-name">
+                  Full name
+                </label>
+
+                <input
+                  id="full-name"
+                  name="name"
+                  type="text"
+                  required
+                  maxlength="200"
+                  autocomplete="name"
+                  placeholder="Alex Morgan"
+                />
               </div>
+
+              <!-- REQUIRED EMAIL -->
               <div class="field">
-                <label for="new-username">Username</label>
+                <label for="new-email">
+                  Email address
+                </label>
+
+                <input
+                  id="new-email"
+                  name="email"
+                  type="email"
+                  required
+                  maxlength="150"
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="alex@example.com"
+                />
+              </div>
+
+              <div class="field">
+                <label for="new-username">
+                  Username
+                </label>
+
                 <input
                   id="new-username"
+                  name="username"
+                  type="text"
                   required
+                  minlength="3"
+                  maxlength="50"
                   autocomplete="username"
                   placeholder="Choose a username"
                 />
               </div>
+
               <div class="field">
-                <label for="new-password">Password</label>
+                <label for="new-password">
+                  Password
+                </label>
+
                 <input
                   id="new-password"
+                  name="password"
                   type="password"
                   required
                   minlength="4"
@@ -114,10 +245,15 @@
                   placeholder="At least 4 characters"
                 />
               </div>
+
               <div class="field">
-                <label for="confirm-password">Confirm password</label>
+                <label for="confirm-password">
+                  Confirm password
+                </label>
+
                 <input
                   id="confirm-password"
+                  name="confirm-password"
                   type="password"
                   required
                   minlength="4"
@@ -125,16 +261,38 @@
                   placeholder="Repeat your password"
                 />
               </div>
-              <button class="btn login-submit" type="submit">Create account</button>
+
+              <button
+                class="btn login-submit"
+                type="submit"
+              >
+                Create account
+              </button>
+
               <p class="login-fineprint">
                 By creating an account you agree to our
-                <a href="support.html">Terms</a> and <a href="support.html">Privacy Policy</a>.
+                <a href="support.html">Terms</a>
+                and
+                <a href="support.html">Privacy Policy</a>.
               </p>
-              <p class="login-alert" id="signup-error" hidden role="alert"></p>
+
+              <p
+                class="login-alert"
+                id="signup-error"
+                hidden
+                role="alert"
+              ></p>
+
             </form>
           </div>
 
-          <a class="login-back" href="home.html">← Continue shopping without signing in</a>
+          <a
+            class="login-back"
+            href="home.html"
+          >
+            ← Continue shopping without signing in
+          </a>
+
         </div>
       </div>
     </main>
