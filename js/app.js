@@ -1713,6 +1713,7 @@
         (p.subtitle || "").toLowerCase().includes(query) ||
         p.category.toLowerCase().includes(query) ||
         String(p.brand || "").toLowerCase().includes(query) ||
+        String(p.description || "").toLowerCase().includes(query) ||
         (p.tags || []).some((t) => String(t).toLowerCase().includes(query));
       const matchC = !cats.length || cats.includes(p.category);
       const matchB =
@@ -1739,6 +1740,7 @@
     if (brand.includes(q)) score += 15;
     if (category.includes(q)) score += 10;
     if (subtitle.includes(q)) score += 8;
+    if (String(product.description || "").toLowerCase().includes(q)) score += 6;
     (product.tags || []).forEach((tag) => {
       if (String(tag).toLowerCase().includes(q)) score += 12;
     });
