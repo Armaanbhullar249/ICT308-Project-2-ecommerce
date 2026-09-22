@@ -2,6 +2,16 @@
 Warners.renderHeader("home");
 Warners.bindAddButtons();
 
+const catHost = document.getElementById("home-cats");
+if (catHost) {
+  catHost.innerHTML = Warners.getCategories()
+    .map(
+      (c) =>
+        `<a class="home-cat" href="search.html?cat=${encodeURIComponent(c)}">${c}</a>`
+    )
+    .join("");
+}
+
 const products = Warners.getProducts();
 const featured = [];
 const seenCats = new Set();

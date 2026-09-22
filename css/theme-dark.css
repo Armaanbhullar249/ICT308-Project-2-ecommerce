@@ -496,3 +496,12 @@ html[data-theme="dark"] .backend-banner a {
   color: #fda4af;
 }
 
+html[data-theme="dark"] .home-cat {
+  background: #1e3a5f;
+  color: #e2e8f0;
+}
+html[data-theme="dark"] .home-cat:hover {
+  background: var(--cyan);
+  color: #041018;
+}
+
