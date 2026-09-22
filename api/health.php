@@ -9,6 +9,7 @@ try {
         'store'=>'http://localhost/ICT308-Project-2-ecommerce-dev/home.html',
         'php'=>PHP_VERSION,
         'database'=>$dbName,
+        'checkedAt'=>gmdate('c'),
     ]);
 } catch (Throwable $e) {
     fail('Database connection failed. Check api/config/database.php and MySQL.',500);
