@@ -181,6 +181,26 @@
 .hero .meta a {
   font-weight: 700;
 }
+.home-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.home-cat {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.home-cat:hover {
+  background: var(--cyan);
+  color: #fff;
+}
 
 .price-range {
   display: grid;
