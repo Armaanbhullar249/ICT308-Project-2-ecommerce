@@ -4,6 +4,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
 
 function input(): array {
     $raw = file_get_contents('php://input');
