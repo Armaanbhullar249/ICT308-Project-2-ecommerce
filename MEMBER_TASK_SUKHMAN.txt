@@ -13,7 +13,6 @@ Backend ownership:
 - checkout/order API and stock update flow
 - customer/staff profile API
 - customer settings API
-- support-message API
+- support-messages API
 
-Integration note:
-This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
+

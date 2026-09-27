@@ -487,3 +487,21 @@ html[data-theme="dark"] .admin-tab.active {
 html[data-theme="dark"] .admin-tabs {
   border-bottom-color: var(--line);
 }
+
+html[data-theme="dark"] .backend-banner {
+  background: #3f1d1d;
+  color: #fecaca;
+}
+html[data-theme="dark"] .backend-banner a {
+  color: #fda4af;
+}
+
+html[data-theme="dark"] .home-cat {
+  background: #1e3a5f;
+  color: #e2e8f0;
+}
+html[data-theme="dark"] .home-cat:hover {
+  background: var(--cyan);
+  color: #041018;
+}
+

@@ -10,5 +10,4 @@ Backend ownership:
 - product upload storage directory
 - product data bridge used by both customer product pages and Admin catalogue management
 
-Integration note:
-This ZIP is an overlay contribution. Extract it into the same project root as the other member ZIPs.
+
