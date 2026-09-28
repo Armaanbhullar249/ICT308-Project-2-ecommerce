@@ -120,7 +120,8 @@
     const submit = form.querySelector('button[type="submit"]');
     if (submit) form.insertBefore(open, submit);
     else form.appendChild(open);
-    form.appendChild(box);
+    //form.appendChild(box);
+    form.after(box);
 
     let token = "";
 
