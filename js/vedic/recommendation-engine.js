@@ -18,6 +18,23 @@
     Televisions: ["Audio", "Smart Home", "Accessories", "Gaming"],
     Wearables: ["Smartphones", "Accessories", "Audio"],
   };
+  
+// What shoppers usually buy with each main product, keyed by the product's
+// category. Other products match by words in their name, subtitle, category or tags.
+const GOES_WITH = {
+  Televisions: ["soundbar", "speaker", "playstation", "ps5", "xbox", "console", "controller", "headset", "headphones", "hdmi", "mount", "smart home"],
+  Gaming: ["tv", "television", "televisions", "cinema", "playstation", "console", "controller", "soundbar", "headset", "headphones", "hdmi"],
+  Laptops: ["sleeve", "stand", "mouse", "keyboard", "usb", "ssd", "headset", "headphones", "earbuds", "bag", "charger", "monitor"],
+  Smartphones: ["earbuds", "headset", "headphones", "case", "charger", "power bank", "watch"],
+  Tablets: ["keyboard", "stylus", "pencil", "case", "sleeve", "earbuds", "headphones", "charger"],
+};
+
+function goesWith(seed, candidate) {
+  const words = GOES_WITH[seed?.category];
+  if (!words) return false;
+  const text = " " + productText(candidate).replace(/[^a-z0-9]+/g, " ") + " ";
+  return words.some((word) => text.includes(" " + word + " "));
+}
 
   function str(value) {
     return String(value == null ? "" : value);
@@ -161,8 +178,18 @@
     const searchTerms = getSearchTerms();
     const rules = W.getRules?.() || [];
 
-    const excluded = new Set();
-    signals.forEach((s) => excluded.add(str(s.product.id)));
+    //const excluded = new Set();
+   // signals.forEach((s) => excluded.add(str(s.product.id)));
+
+    const seedSignal = signals.find((s) => s.type === "seed");
+    const pairingMode = Boolean(seedSignal && GOES_WITH[seedSignal.product.category]);
+
+const excluded = new Set();
+signals.forEach((s) => {
+  // Viewed products can still be paired, e.g. the TV on the PS5 page.
+  if (pairingMode && s.type === "view") return;
+  excluded.add(str(s.product.id));
+});
 
     const records = new Map();
     products.forEach((product) => {
@@ -214,6 +241,19 @@
         if (target) addReason(target, `admin rule: ${rule.name || "recommended pairing"}`, base * 1.35 + 12);
       });
     });
+// On a product page, keep only products that go with it (plus admin rule pairings).
+if (pairingMode) {
+  const matches = [...records.values()].filter((r) => goesWith(seedSignal.product, r.product));
+  if (matches.length) {
+    const ruleTargets = new Set(
+      rules.filter((rule) => ruleApplies(rule, seedSignal)).map((rule) => str(rule.thenId))
+    );
+    records.forEach((record, id) => {
+      if (!matches.includes(record) && !ruleTargets.has(id)) records.delete(id);
+    });
+    matches.forEach((record) => addReason(record, `goes with ${seedSignal.product.name}`, 15));
+  }
+}
 
     // Recent search history gives a smaller supporting signal.
     searchTerms.forEach(({ word, index }) => {
