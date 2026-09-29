@@ -23,7 +23,7 @@ function ensure_reset_table(): void {
     db()->exec(
         "CREATE TABLE IF NOT EXISTS password_reset_tokens (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
+            user_id INT UNSIGNED NOT NULL,
             token_hash CHAR(64) NOT NULL UNIQUE,
             expires_at DATETIME NOT NULL,
             used_at DATETIME NULL,
@@ -77,13 +77,13 @@ try {
 
         $token = bin2hex(random_bytes(32));
         $hash = hash('sha256', $token);
-        $expires = date('Y-m-d H:i:s', time() + 900);
-
-        $st = db()->prepare(
-            "INSERT INTO password_reset_tokens(user_id,token_hash,expires_at)
-             VALUES(?,?,?)"
-        );
-        $st->execute([$userId, $hash, $expires]);
+      
+// Expiry uses MySQL's clock so it matches the NOW() check in the reset step.
+$st = db()->prepare(
+    "INSERT INTO password_reset_tokens(user_id,token_hash,expires_at)
+     VALUES(?,?,DATE_ADD(NOW(), INTERVAL 15 MINUTE))"
+);
+$st->execute([$userId, $hash]);
 
         respond([
             'ok' => true,
