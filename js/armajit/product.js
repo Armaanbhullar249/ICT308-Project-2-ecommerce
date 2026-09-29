@@ -9,7 +9,7 @@ if (!p) {
   root.innerHTML = `<div class="panel">Product not found. <a href="home.html">Back</a></div>`;
 } else {
   Warners.trackView(p.id);
-  const related = Warners.getRecommendations(p.id).slice(0, 4);
+  const related = Warners.getRecommendations(p.id).slice(0, 6);
   const photos = Warners.productGallery(p);
   const artHtml = photos.length
     ? `<div class="product-gallery">
@@ -73,7 +73,7 @@ if (!p) {
 
   document.getElementById("buy").onclick = () => {
     Warners.addToCart(p.id);
-    const next = Warners.getRecommendations(p.id).slice(0, 4);
+    const next = Warners.getRecommendations(p.id).slice(0, 6);
     document.getElementById("related").innerHTML = next
       .map(Warners.productCard)
       .join("");
