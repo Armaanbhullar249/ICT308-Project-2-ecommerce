@@ -13,9 +13,9 @@
     Accessories: ["Laptops", "Smartphones", "Tablets", "Audio", "Gaming"],
     "Smart Home": ["Accessories", "Audio"],
     Tablets: ["Accessories", "Laptops", "Audio"],
-    Gaming: ["Accessories", "Audio", "Monitors", "Laptops"],
+    Gaming: ["Accessories", "Audio", "Monitors", "Laptops", "Televisions"],
     Cameras: ["Accessories", "Storage"],
-    Televisions: ["Audio", "Smart Home", "Accessories"],
+    Televisions: ["Audio", "Smart Home", "Accessories", "Gaming"],
     Wearables: ["Smartphones", "Accessories", "Audio"],
   };
 
